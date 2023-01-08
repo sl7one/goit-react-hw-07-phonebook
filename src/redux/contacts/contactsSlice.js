@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { closeEditForm } from './modalSlice';
+
 import {
   addContact,
   deleteContact,
@@ -67,10 +67,6 @@ export const contactsSlice = createSlice({
         contact => contact.id === action.payload.id
       );
       state.contacts.items.splice(index, 1, action.payload);
-      // console.log(index);
-      // state.contacts.items = state.contacts.items.filter(
-      //   contact => contact.id !== action.payload.id
-      // );
     },
     [editContact.rejected](state, action) {
       state.contacts.isLoading = false;
