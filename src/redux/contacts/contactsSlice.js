@@ -14,7 +14,6 @@ const initialState = {
     error: null,
   },
   filter: '',
-  contactId: 0,
 };
 
 export const contactsSlice = createSlice({

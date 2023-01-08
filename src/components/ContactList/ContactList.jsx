@@ -8,15 +8,18 @@ import { deleteContact } from 'redux/contacts/operations';
 
 export const ContactList = ({ contacts, setContact }) => {
   const dispatch = useDispatch();
+
   const handleClickDelete = event => {
-    dispatch(deleteContact(event.target.dataset.id));
+    dispatch(deleteContact(event.currentTarget.dataset.id));
   };
+
   const handleClickEdit = event => {
     const [contact] = contacts.filter(
       el => el.id === event.currentTarget.dataset.id
     );
-    setContact({ name: contact.name, phone: contact.phone, id: contact.id });
-    // console.log(contact.name, event.currentTarget.dataset.id);
+
+    const { name, phone, id } = contact;
+    setContact({ name, phone, id });
 
     dispatch(showEditForm());
   };
@@ -29,7 +32,7 @@ export const ContactList = ({ contacts, setContact }) => {
               <FcBusinessman />
             ) : (
               <FcBusinesswoman />
-            )}{' '}
+            )}
             {contact.name}
           </Name>
           <Phone>
@@ -48,6 +51,7 @@ export const ContactList = ({ contacts, setContact }) => {
               type="button"
               onClick={handleClickDelete}
               data-id={contact.id}
+              data-type="delete"
             >
               <BsTrash color="red" size="1em" />
             </Button>
